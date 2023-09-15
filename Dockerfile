@@ -14,7 +14,7 @@ COPY . .
 
 RUN CGO_ENABLED=0 GOOS=linux go build -a -installsuffix cgo -o main .
 
-FROM golang:1.18-alpine
+FROM  golang:1.21.1-alpine
 RUN apk --no-cache add ca-certificates
 
 WORKDIR /root/
