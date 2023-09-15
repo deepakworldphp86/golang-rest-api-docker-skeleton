@@ -76,11 +76,11 @@ func Rest() {
 		receiptRoutes.DELETE("/:id", receiptController.Delete)
 	}
 
-	r.GET("/", func(c *gin.Context) {
-		c.JSON(200, gin.H{
-			"message": "Hello, World",
-		})
-	})
+	// r.GET("/", func(c *gin.Context) {
+	// 	c.JSON(200, gin.H{
+	// 		"message": "Hello, World",
+	// 	})
+	// })
 
 	r.Run()
 }
