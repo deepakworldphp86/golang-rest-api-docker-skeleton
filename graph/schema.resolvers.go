@@ -11,24 +11,14 @@ import (
 	"github.com/deepakworldphp86/golang-api/graph/model"
 )
 
-// CreatePost is the resolver for the CreatePost field.
-func (r *mutationResolver) CreatePost(ctx context.Context, input model.NewPost) (*model.Post, error) {
-	panic(fmt.Errorf("not implemented: CreatePost - CreatePost"))
+// CreateTodo is the resolver for the createTodo field.
+func (r *mutationResolver) CreateTodo(ctx context.Context, input model.NewTodo) (*model.Todo, error) {
+	panic(fmt.Errorf("not implemented: CreateTodo - createTodo"))
 }
 
-// UpdatePost is the resolver for the UpdatePost field.
-func (r *mutationResolver) UpdatePost(ctx context.Context, postID int, input *model.NewPost) (*model.Post, error) {
-	panic(fmt.Errorf("not implemented: UpdatePost - UpdatePost"))
-}
-
-// GetAllPosts is the resolver for the GetAllPosts field.
-func (r *queryResolver) GetAllPosts(ctx context.Context) ([]*model.Post, error) {
-	panic(fmt.Errorf("not implemented: GetAllPosts - GetAllPosts"))
-}
-
-// GetOnePost is the resolver for the GetOnePost field.
-func (r *queryResolver) GetOnePost(ctx context.Context, id int) (*model.Post, error) {
-	panic(fmt.Errorf("not implemented: GetOnePost - GetOnePost"))
+// Todos is the resolver for the todos field.
+func (r *queryResolver) Todos(ctx context.Context) ([]*model.Todo, error) {
+	panic(fmt.Errorf("not implemented: Todos - todos"))
 }
 
 // Mutation returns MutationResolver implementation.

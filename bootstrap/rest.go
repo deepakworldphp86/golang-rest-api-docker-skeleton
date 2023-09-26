@@ -32,6 +32,7 @@ var (
 	userController    controller.UserController    = controller.NewUserController(userService, jwtService)
 	bookController    controller.BookController    = controller.NewBookController(bookService, jwtService)
 	receiptController controller.ReceiptController = controller.NewReceiptController(receiptService, receiptCache)
+
 )
 
 func Rest() {
@@ -76,11 +77,17 @@ func Rest() {
 		receiptRoutes.DELETE("/:id", receiptController.Delete)
 	}
 
-	// r.GET("/", func(c *gin.Context) {
-	// 	c.JSON(200, gin.H{
-	// 		"message": "Hello, World",
-	// 	})
-	// })
+	graphqlRoutes := r.Group("/graphql")
+	{
+		graphqlRoutes.GET("", controller.GetGraphQl)
+		graphqlRoutes.POST("", controller.PostGraphQl)
+	}
+
+	r.GET("/", func(c *gin.Context) {
+		c.JSON(200, gin.H{
+			"message": "Hello, World",
+		})
+	})
 
 	r.Run()
 }
