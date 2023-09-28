@@ -83,6 +83,11 @@ func Rest() {
 		graphqlRoutes.POST("", controller.PostGraphQl)
 	}
 
+	graphqlPlaygroundRoutes := r.Group("/playground")
+	{
+		graphqlPlaygroundRoutes.GET("", controller.GetGraphQlPlayground)
+	}
+
 	r.GET("/", func(c *gin.Context) {
 		c.JSON(200, gin.H{
 			"message": "Hello, World",

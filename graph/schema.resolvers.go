@@ -16,9 +16,20 @@ func (r *mutationResolver) CreateTodo(ctx context.Context, input model.NewTodo) 
 	panic(fmt.Errorf("not implemented: CreateTodo - createTodo"))
 }
 
+// SetMessage is the resolver for the setMessage field.
+func (r *mutationResolver) SetMessage(ctx context.Context, message string) (string, error) {
+	// Implement your mutation logic here
+    return message, nil
+}
+
 // Todos is the resolver for the todos field.
 func (r *queryResolver) Todos(ctx context.Context) ([]*model.Todo, error) {
 	panic(fmt.Errorf("not implemented: Todos - todos"))
+}
+
+// Hello is the resolver for the hello field.
+func (r *queryResolver) Hello(ctx context.Context) (string, error) {
+	return "Hello, GraphQL!", nil
 }
 
 // Mutation returns MutationResolver implementation.

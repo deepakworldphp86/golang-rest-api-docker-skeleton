@@ -8,5 +8,4 @@ import (
 
 func main() {
 	bootstrap.Rest();
-	//bootstrap.GraphQl();
 }
