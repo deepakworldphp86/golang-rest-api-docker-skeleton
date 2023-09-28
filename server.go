@@ -7,5 +7,5 @@ import (
 
 
 func main() {
-	bootstrap.Rest();
+	bootstrap.Init();
 }

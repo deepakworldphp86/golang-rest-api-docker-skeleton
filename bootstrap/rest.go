@@ -32,10 +32,12 @@ var (
 	userController    controller.UserController    = controller.NewUserController(userService, jwtService)
 	bookController    controller.BookController    = controller.NewBookController(bookService, jwtService)
 	receiptController controller.ReceiptController = controller.NewReceiptController(receiptService, receiptCache)
+	graphqlController controller.GraphqlController = controller.NewGraphqlController(jwtService)
+
 
 )
 
-func Rest() {
+func Init() {
 	defer config.CloseDatabaseConnection(db)
 	r := gin.Default()
 
@@ -77,15 +79,15 @@ func Rest() {
 		receiptRoutes.DELETE("/:id", receiptController.Delete)
 	}
 
-	graphqlRoutes := r.Group("/graphql")
+	graphqlRoutes := r.Group("/graphql", middleware.AuthorizeJWT(jwtService))
 	{
-		graphqlRoutes.GET("", controller.GetGraphQl)
-		graphqlRoutes.POST("", controller.PostGraphQl)
+		graphqlRoutes.GET("", graphqlController.GetGraphQl)
+		graphqlRoutes.POST("", graphqlController.PostGraphQl)
 	}
 
-	graphqlPlaygroundRoutes := r.Group("/playground")
+	graphqlPlaygroundRoutes := r.Group("/playground", middleware.AuthorizeJWT(jwtService))
 	{
-		graphqlPlaygroundRoutes.GET("", controller.GetGraphQlPlayground)
+		graphqlPlaygroundRoutes.GET("", graphqlController.GetGraphQlPlayground)
 	}
 
 	r.GET("/", func(c *gin.Context) {
