@@ -15,9 +15,11 @@ import (
 
 var (
 	db                *gorm.DB                     = config.SetupDatabaseConnection()
+	dbpgsql           *gorm.DB                     = config.SetupDatabaseConnectionPgsql()
 	userRepository    repository.UserRepository    = repository.NewUserRepository(db)
 	bookRepository    repository.BookRepository    = repository.NewBookRepository(db)
 	receiptRepository repository.ReceiptRepository = repository.NewReceiptRepository(db)
+	//shopRepository repository.ShopRepository = repository.NewShopRepository(dbpgsql)
 
 	rd           *redis.Client      = config.SetupRedisConnection()
 	receiptCache cache.ReceiptCache = cache.NewReceiptCache(rd, 1000) // random expiration lmao
@@ -27,6 +29,8 @@ var (
 	userService    service.UserService    = service.NewUserService(userRepository)
 	bookService    service.BookService    = service.NewBookService(bookRepository)
 	receiptService service.ReceiptService = service.NewReceiptService(receiptRepository)
+	//shopService    service.ShopService = service.NewShopService(shopRepository)
+
 
 	authController    controller.AuthController    = controller.NewAuthController(authService, jwtService)
 	userController    controller.UserController    = controller.NewUserController(userService, jwtService)
