@@ -8,7 +8,7 @@ type LoginUser struct {
 	Password string `json:"password" binding:"required"`
 }
 
-type User struct {
+type Users struct {
 	ID        uint      `json:"id" gorm:"primary_key"`
 	Username  string    `json:"username" gorm:"unique"`
 	Password  string    `json:"password"`
