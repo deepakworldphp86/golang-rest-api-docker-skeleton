@@ -6,13 +6,15 @@ networks:
 
 services:
   app:
+    build:
+      context: ./src/go-app
+      dockerfile: go.Dockerfile
     container_name: golang-api
-    build: .
     ports:
       - "8080:8080"
     restart: on-failure
     volumes:
-      - ./api:/usr/src/app/
+      - .api:/usr/src/app/
     depends_on:
       - db
     networks:
