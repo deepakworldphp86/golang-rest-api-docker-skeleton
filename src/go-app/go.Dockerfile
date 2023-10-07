@@ -1,3 +1,5 @@
+#Production Mode
+
 FROM golang:1.21.1-alpine as builder
 
 LABEL maintainer="Deepak Kumar"
@@ -25,3 +27,5 @@ COPY --from=builder /app/.env .
 EXPOSE 8080
 
 CMD ["./main"]
+
+
