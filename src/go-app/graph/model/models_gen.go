@@ -2,8 +2,14 @@
 
 package model
 
-type Category struct {
-	ID          string `json:"id"`
-	Name        string `json:"name"`
-	Description string `json:"description"`
+import (
+	"time"
+)
+
+type Categories struct {
+	ID           uint      `json:"id" gorm:"primary_key"`
+	CategoryName string    `json:"category_name"`
+	Description  string    `json:"description"`
+	CreatedAt    time.Time `json:"created_at" gorm:"autoCreateTime"`
+	UpdatedAt    time.Time `json:"updated_at" gorm:"autoUpdateTime"`
 }

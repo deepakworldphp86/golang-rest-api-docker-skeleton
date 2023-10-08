@@ -1,22 +1,19 @@
-# GraphQL schema example
-#
-# https://gqlgen.com/getting-started/
-
-#Category GraphQL
-
-type Category {
+# internal/gql/schema.graphqls
+type Categories {
   id: ID!
-  name: String!
+  category_name: String!
   description: String!
+  created_at: String!
+  updated_at: String!
 }
 
 type Query {
-  category(id: ID!): Category
-   hello: String!
+  getCategory(id: ID!): Categories
+  listCategories: [Categories]
+  hello: String!
 }
 
 type Mutation {
-  createCategory(name: String!, description: String!): Category
+  createCategory(category_name: String!, description: String!): Categories
   setMessage(message: String!): String!
 }
-

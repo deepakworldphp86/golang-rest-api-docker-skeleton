@@ -12,19 +12,24 @@ import (
 )
 
 // CreateCategory is the resolver for the createCategory field.
-func (r *mutationResolver) CreateCategory(ctx context.Context, name string, description string) (*model.Category, error) {
+func (r *mutationResolver) CreateCategory(ctx context.Context, categoryName string, description string) (*model.Categories, error) {
 	panic(fmt.Errorf("not implemented: CreateCategory - createCategory"))
 }
 
 // SetMessage is the resolver for the setMessage field.
 func (r *mutationResolver) SetMessage(ctx context.Context, message string) (string, error) {
-	// Implement your mutation logic here
-    return message, nil
+		// Implement your mutation logic here
+		return message, nil
 }
 
-// Category is the resolver for the category field.
-func (r *queryResolver) Category(ctx context.Context, id string) (*model.Category, error) {
-	panic(fmt.Errorf("not implemented: Category - category"))
+// GetCategory is the resolver for the getCategory field.
+func (r *queryResolver) GetCategory(ctx context.Context, id string) (*model.Categories, error) {
+	panic(fmt.Errorf("not implemented: GetCategory - getCategory"))
+}
+
+// ListCategories is the resolver for the listCategories field.
+func (r *queryResolver) ListCategories(ctx context.Context) ([]*model.Categories, error) {
+	panic(fmt.Errorf("not implemented: ListCategories - listCategories"))
 }
 
 // Hello is the resolver for the hello field.
