@@ -58,7 +58,7 @@ func SetupDatabaseConnectionPgsql() *gorm.DB {
 		panic("failed to connect to database")
 	}
 
-	database.AutoMigrate(&entity.LoginUser{},&entity.User{},&entity.Customers{},&entity.Products{},&entity.Customers{},&entity.Products{},&entity.Orders{},&entity.OrderDetails{});
+	database.AutoMigrate(&entity.LoginUser{},&entity.User{},&entity.Categories{},&entity.Customers{},&entity.Products{},&entity.Customers{},&entity.Products{},&entity.Orders{},&entity.OrderDetails{});
 
 	return database
 }

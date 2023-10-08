@@ -2,29 +2,21 @@
 #
 # https://gqlgen.com/getting-started/
 
-type Todo {
-  id: ID!
-  text: String!
-  done: Boolean!
-  user: User!
-}
+#Category GraphQL
 
-type User {
+type Category {
   id: ID!
   name: String!
+  description: String!
 }
 
 type Query {
-  todos: [Todo!]!
-  hello: String!
-}
-
-input NewTodo {
-  text: String!
-  userId: String!
+  category(id: ID!): Category
+   hello: String!
 }
 
 type Mutation {
-  createTodo(input: NewTodo!): Todo!
+  createCategory(name: String!, description: String!): Category
   setMessage(message: String!): String!
 }
+

@@ -20,7 +20,7 @@ var (
 	userRepository    repository.UserRepository    = repository.NewUserRepository(db)
 	bookRepository    repository.BookRepository    = repository.NewBookRepository(db)
 	receiptRepository repository.ReceiptRepository = repository.NewReceiptRepository(db)
-	//categoryRepository repository.CategoryRepository = repository.NewCategoryRepository(dbpgsql)
+	categoryRepository repository.CategoryRepository = repository.NewCategoryRepository(dbpgsql)
 
 	rd           *redis.Client      = config.SetupRedisConnection()
 	receiptCache cache.ReceiptCache = cache.NewReceiptCache(rd, 1000) // random expiration lmao
@@ -30,7 +30,7 @@ var (
 	userService    service.UserService    = service.NewUserService(userRepository)
 	bookService    service.BookService    = service.NewBookService(bookRepository)
 	receiptService service.ReceiptService = service.NewReceiptService(receiptRepository)
-	//shopService    service.ShopService = service.NewShopService(shopRepository)
+	//categoryService    service.CategoryService = service.NewCategoryService(categoryRepository)
 
 
 	authController    controller.AuthController    = controller.NewAuthController(authService, jwtService)

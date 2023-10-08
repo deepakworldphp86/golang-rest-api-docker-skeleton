@@ -1,0 +1,68 @@
+package service
+
+import (
+	"fmt"
+	"log"
+
+	"github.com/mashingan/smapping"
+	"github.com/deepakworldphp86/golang-api/dto"
+	"github.com/deepakworldphp86/golang-api/entity"
+	"github.com/deepakworldphp86/golang-api/repository"
+)
+
+type CategoryService interface {
+	Insert(category dto.CategoryCreate) entity.Categories
+	Update(category dto.CategoryUpdate) entity.Categories
+	Get(categoryID uint64) entity.Categories
+	Delete(category entity.Categories)
+	All() []entity.Categories
+}
+
+type categoryService struct {
+	categoryRepository repository.CategoryRepository
+}
+
+func NewCategoryService(categoryRepository repository.CategoryRepository) CategoryService {
+	return &categoryService{
+		categoryRepository: categoryRepository,
+	}
+}
+
+func (service *categoryService) Insert(category dto.CategoryCreate) entity.Categories {
+	newCategory := entity.Categories{}
+	err := smapping.FillStruct(&newCategory, smapping.MapFields(&category))
+	if err != nil {
+		log.Fatalf("failed to map: %v", err.Error())
+	}
+
+	res := service.categoryRepository.InsertCategory(newCategory)
+	return res
+}
+
+func (service *categoryService) Update(b dto.CategoryUpdate) entity.Categories {
+	category := entity.Categories{}
+	err := smapping.FillStruct(&category, smapping.MapFields(&b))
+	if err != nil {
+		log.Fatalf("failed to map: %v", err.Error())
+	}
+
+	res := service.categoryRepository.UpdateCategory(category)
+	return res
+}
+
+func (service *categoryService) Get(categoryID uint64) entity.Categories {
+	return service.categoryRepository.GetCategory(categoryID)
+}
+
+func (service *categoryService) Delete(b entity.Categories) {
+	service.categoryRepository.DeleteCategory(b)
+}
+
+func (service *categoryService) All() []entity.Categories {
+	return service.categoryRepository.AllCategory()
+}
+
+func (service *categoryService) IsAllowedToEdit(userID string, categoryID uint64) bool {
+	category := service.categoryRepository.GetCategory(categoryID)
+	return userID == fmt.Sprintf("%v", category.UserID)
+}

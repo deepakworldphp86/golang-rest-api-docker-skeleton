@@ -11,9 +11,9 @@ import (
 	"github.com/deepakworldphp86/golang-api/graph/model"
 )
 
-// CreateTodo is the resolver for the createTodo field.
-func (r *mutationResolver) CreateTodo(ctx context.Context, input model.NewTodo) (*model.Todo, error) {
-	panic(fmt.Errorf("not implemented: CreateTodo - createTodo"))
+// CreateCategory is the resolver for the createCategory field.
+func (r *mutationResolver) CreateCategory(ctx context.Context, name string, description string) (*model.Category, error) {
+	panic(fmt.Errorf("not implemented: CreateCategory - createCategory"))
 }
 
 // SetMessage is the resolver for the setMessage field.
@@ -22,9 +22,9 @@ func (r *mutationResolver) SetMessage(ctx context.Context, message string) (stri
     return message, nil
 }
 
-// Todos is the resolver for the todos field.
-func (r *queryResolver) Todos(ctx context.Context) ([]*model.Todo, error) {
-	panic(fmt.Errorf("not implemented: Todos - todos"))
+// Category is the resolver for the category field.
+func (r *queryResolver) Category(ctx context.Context, id string) (*model.Category, error) {
+	panic(fmt.Errorf("not implemented: Category - category"))
 }
 
 // Hello is the resolver for the hello field.
