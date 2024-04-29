@@ -7,6 +7,11 @@ type Categories {
   updated_at: String!
 }
 
+input NewCategory {
+  category_name: String!
+  description: String!
+}
+
 type Query {
   getCategory(id: ID!): Categories
   listCategories: [Categories]
@@ -14,6 +19,7 @@ type Query {
 }
 
 type Mutation {
-  createCategory(category_name: String!, description: String!): Categories
+  createCategory(input: NewCategory!): Categories
   setMessage(message: String!): String!
 }
+

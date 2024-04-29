@@ -4,11 +4,11 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/joho/godotenv"
 	"github.com/deepakworldphp86/golang-api/entity"
+	"github.com/joho/godotenv"
 	"gorm.io/driver/mysql"
 	"gorm.io/driver/postgres"
-    "gorm.io/gorm"
+	"gorm.io/gorm"
 )
 
 func SetupDatabaseConnection() *gorm.DB {
@@ -30,7 +30,7 @@ func SetupDatabaseConnection() *gorm.DB {
 		panic("failed to connect to database")
 	}
 
-	db.AutoMigrate(&entity.Book{}, &entity.User{}, &entity.Receipt{})
+	db.AutoMigrate(&entity.Book{}, &entity.User{}, &entity.Receipt{}, &entity.Categories{})
 
 	return db
 }
@@ -38,7 +38,7 @@ func SetupDatabaseConnection() *gorm.DB {
 //Postgrees sql
 
 func SetupDatabaseConnectionPgsql() *gorm.DB {
-	
+
 	errEnv := godotenv.Load()
 
 	if errEnv != nil {
@@ -58,7 +58,7 @@ func SetupDatabaseConnectionPgsql() *gorm.DB {
 		panic("failed to connect to database")
 	}
 
-	database.AutoMigrate(&entity.LoginUser{},&entity.User{},&entity.Categories{},&entity.Customers{},&entity.Products{},&entity.Customers{},&entity.Products{},&entity.Orders{},&entity.OrderDetails{});
+	database.AutoMigrate(&entity.LoginUser{}, &entity.User{}, &entity.Categories{}, &entity.Customers{}, &entity.Products{}, &entity.Customers{}, &entity.Products{}, &entity.Orders{}, &entity.OrderDetails{})
 
 	return database
 }
